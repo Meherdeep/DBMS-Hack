@@ -47,5 +47,18 @@ def login():
         return 'Good'
     return 'Bad'
 
+@app.route('/track')
+def track():
+
+    reg = {
+        'pnrNo': request.args.get('pnrNo'),
+        'city': request.args.get('city'),
+        'route': request.args.get('route')
+    }
+    print(reg)
+
+    db.track.insert_one(reg)
+    return 'Good'
+
 if __name__ == '__main__':
     app.run()
