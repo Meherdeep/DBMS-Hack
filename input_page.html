@@ -220,10 +220,28 @@ svg {
 				<label for="Contact">Route</label>
 		</div>
 		<div class="input-group">
-				<button class="btn"><a href="https://goo.gl/Q2hMUN">Track</a></button>
+				<button class="btn" onclick="track()">Track</button>
 		</div>
 </div>
 
-<script  src="js/index.js"></script>
+<script>
+	function track() {
+        console.log('signup enter');
+        var pnrNo = document.getElementById('first').value;
+        var city = document.getElementById('last').value;
+		var route = document.getElementById('Contact').value;
+
+        var request = new XMLHttpRequest();
+        var req_url = 'http://localhost:5000/track?pnrNo=' + pnrNo + '&city=' + city + '&route=' + route;
+        console.log(req_url);
+        request.open('GET', req_url, true);
+        request.onload = function () {
+            var data = this.response;
+            console.log(data);
+            window.location.href = 'input_page.html';
+        }
+        request.send();
+    }
+</script>
 </body>
 </html>

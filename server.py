@@ -29,9 +29,6 @@ def register():
         'name': request.args.get('name'),
         'email': request.args.get('email'),
         'password': request.args.get('pass')
-        'PNR': request.args.get('PNR')
-        'City': request.args.get('City')
-        'Route': request.args.get('Route')
     }
     print(reg)
 
@@ -50,6 +47,18 @@ def login():
         return 'Good'
     return 'Bad'
 
-    #val = db.login.find_one({'email': uname})
+@app.route('/track')
+def track():
+
+    reg = {
+        'pnrNo': request.args.get('pnrNo'),
+        'city': request.args.get('city'),
+        'route': request.args.get('route')
+    }
+    print(reg)
+
+    db.track.insert_one(reg)
+    return 'Good'
+
 if __name__ == '__main__':
     app.run()
